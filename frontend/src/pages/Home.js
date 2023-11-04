@@ -1,39 +1,39 @@
 import { useEffect } from 'react'
-import WorkoutDetails from '../components/WorkoutDetails'
-import WorkoutForm from '../components/WorkoutForm'
-import {useWorkoutContext} from '../hooks/useWorkoutContext'
+import JobDetails from '../components/JobDetails'
+import JobForm from '../components/JobForm'
+import {useJobContext} from '../hooks/useJobContext'
 import {useAuthContext} from '../hooks/useAuthContext'
 
 const Home = () => {
 
-    const {workouts, dispatch} = useWorkoutContext()
+    const {jobs, dispatch} = useJobContext()
     const {user} = useAuthContext()
 
     useEffect( () => {
-       const fetchWorkouts = async () => {
-        const response = await fetch('/api/workouts', {
+       const fetchJobs = async () => {
+        const response = await fetch('/api/jobs', {
             headers : {
                 'Authorization' : `Bearer ${user.token}`
             }
         })
         const json = await response.json()
         if (response.ok) {
-            dispatch({type: 'SET_WORKOUTS', payload : json})            
+            dispatch({type: 'SET_JOBS', payload : json})            
         }  
     }
     if (user) {
-        fetchWorkouts()
+        fetchJobs()
     } 
     }, [dispatch, user])
 
     return (
         <div className = "home">
-           <div className="workouts">
-            {workouts && workouts.map((workout) => (
-                <WorkoutDetails workout={workout} key={workout._id}/> 
+           <div className="jobs">
+            {jobs && jobs.map((job) => (
+                <JobDetails job={job} key={job._id}/> 
             ))}
             </div>     
-            <WorkoutForm/>   
+            <JobForm/>   
         </div>
     )
 }

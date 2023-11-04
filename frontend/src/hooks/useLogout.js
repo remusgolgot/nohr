@@ -1,16 +1,16 @@
 import {useAuthContext} from './useAuthContext'
-import {useWorkoutContext} from './useWorkoutContext'
+import {useJobContext} from './useJobContext'
 
 export const useLogout = () => {
 
     const { dispatch } = useAuthContext()
-    const { dispatch: dispatchWorkouts } = useWorkoutContext()
+    const { dispatch: dispatchJobs } = useJobContext()
 
     const logout = () => {
         localStorage.removeItem('user')
 
         dispatch({type: 'LOGOUT'})
-        dispatchWorkouts({type: 'SET_WORKOUTS', payload: null})
+        dispatchJobs({type: 'SET_JOBS', payload: null})
     }
     return { logout}
 }

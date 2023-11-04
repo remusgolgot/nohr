@@ -1,14 +1,13 @@
 import { useState } from 'react'
-import { useWorkoutContext } from '../hooks/useWorkoutContext'
+import { useJobContext } from '../hooks/useJobContext'
 import { useAuthContext } from '../hooks/useAuthContext'
 
-const WorkoutForm = () => {
+const JobForm = () => {
 
-    const { dispatch } = useWorkoutContext()
+    const { dispatch } = useJobContext()
     const { user } = useAuthContext()
     const [title, setTitle]  = useState('')
-    const [load, setLoad]  = useState('')
-    const [reps, setReps]  = useState('')
+    const [salary, setSalary]  = useState('')
     const [error, setError]  = useState(null)
     const [emptyFields, setEmptyFields]  = useState([])
 
@@ -20,10 +19,10 @@ const WorkoutForm = () => {
             return
         }
 
-        const workout = {title, load, reps}
-        const response = await fetch('/api/workouts', {
+        const job = {title, salary}
+        const response = await fetch('/api/jobs', {
             method : 'POST',
-            body : JSON.stringify(workout),
+            body : JSON.stringify(job),
             headers : {
                 'Content-Type' : 'application/json',
                 'Authorization' : `Bearer ${user.token}`
@@ -36,21 +35,20 @@ const WorkoutForm = () => {
             setEmptyFields(json.emptyFields)
         } else {
             setTitle('')
-            setLoad('')
-            setReps('')
+            setSalary('')
             setEmptyFields([])
             setError(null)
-            console.log('New workout added', json)
-            dispatch({type: 'CREATE_WORKOUT', payload : json})
+            console.log('New job added', json)
+            dispatch({type: 'CREATE_JOB', payload : json})
         }
     }
 
     return (
        <form className="create" onSubmit= {handleSubmit}>
         <h3>
-            Add a New Workout
+            Add a New Job
         </h3>
-        <label> Exercise title: </label>
+        <label> Title: </label>
         <input
             type = "text"
             onChange= {(e) => setTitle(e.target.value)}
@@ -59,24 +57,16 @@ const WorkoutForm = () => {
         >
         </input>
 
-        <label> Load: </label>
+        <label> Salary: </label>
         <input
             type = "number"
-            onChange= {(e) => setLoad(e.target.value)}
-            value={load}
-            className = {emptyFields.includes('load') ? 'error' : ''}
+            onChange= {(e) => setSalary(e.target.value)}
+            value={salary}
+            className = {emptyFields.includes('salary') ? 'error' : ''}
         >
         </input>
 
-        <label> Reps: </label>
-        <input
-            type = "number"
-            onChange= {(e) => setReps(e.target.value)}
-            value={reps}
-            className = {emptyFields.includes('reps') ? 'error' : ''}
-        >
-        </input>
-        <button> Add workout</button>  
+        <button> Add job</button>  
         {error && <div className = "error">{error}</div>}
         </form>
 
@@ -84,4 +74,4 @@ const WorkoutForm = () => {
     )
 }
 
-export default WorkoutForm
+export default JobForm

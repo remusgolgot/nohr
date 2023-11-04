@@ -21,6 +21,7 @@ const Signup = () => {
                 onChange = {(e) => setEmail(e.target.value)}
                 value = {email}
             ></input>
+            <label>Password:</label>
             <input
                 type = "password"
                 onChange = {(e) => setPassword(e.target.value)}
