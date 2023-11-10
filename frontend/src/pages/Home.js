@@ -10,7 +10,7 @@ const Home = () => {
     const {user} = useAuthContext()
 
     useEffect( () => {
-       const fetchJobs = async () => {
+        const fetchJobs = async () => {
         const response = await fetch('/api/jobs', {
             headers : {
                 'Authorization' : `Bearer ${user.token}`

@@ -28,7 +28,11 @@ const JobDetails = ({job}) => {
         return (
             <div className="job-details">
                  <h4>{job.title}</h4>
-                 <p><strong>Salary ($$) : </strong>{job.salary}</p>       
+                 <h3>{job.company}</h3>
+                 <p><strong>Min Salary ($) : </strong>{job.minSalary}</p>       
+                 <p><strong>Max Salary ($) : </strong>{job.maxSalary}</p>       
+                 <p><strong>Type : </strong>{job.type}</p>       
+                 <br/>
                  <p>{formatDistanceToNow(new Date(job.createdAt), {addSuffix: true})}</p>
                  <span className = 'material-symbols-outlined'  onClick={handleClick}>
                     delete

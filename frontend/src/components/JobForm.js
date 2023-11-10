@@ -7,7 +7,9 @@ const JobForm = () => {
     const { dispatch } = useJobContext()
     const { user } = useAuthContext()
     const [title, setTitle]  = useState('')
-    const [salary, setSalary]  = useState('')
+    const [minSalary, setMinSalary]  = useState('')
+    const [maxSalary, setMaxSalary]  = useState('')
+    const [type, setType]  = useState('')
     const [error, setError]  = useState(null)
     const [emptyFields, setEmptyFields]  = useState([])
 
@@ -19,7 +21,8 @@ const JobForm = () => {
             return
         }
 
-        const job = {title, salary}
+        const job = {title, minSalary, maxSalary, type}
+        console.log(job);
         const response = await fetch('/api/jobs', {
             method : 'POST',
             body : JSON.stringify(job),
@@ -35,7 +38,9 @@ const JobForm = () => {
             setEmptyFields(json.emptyFields)
         } else {
             setTitle('')
-            setSalary('')
+            setMinSalary('')
+            setMaxSalary('')
+            setType('')
             setEmptyFields([])
             setError(null)
             console.log('New job added', json)
@@ -53,16 +58,34 @@ const JobForm = () => {
             type = "text"
             onChange= {(e) => setTitle(e.target.value)}
             value={title}
-            className = {emptyFields.includes('title') ? 'error' : ''}
+            className = {error || emptyFields.includes('title') ? 'error' : ''}
         >
         </input>
 
-        <label> Salary: </label>
+        <label> Min Salary($): </label>
         <input
             type = "number"
-            onChange= {(e) => setSalary(e.target.value)}
-            value={salary}
-            className = {emptyFields.includes('salary') ? 'error' : ''}
+            onChange= {(e) => setMinSalary(e.target.value)}
+            value={minSalary}
+            className = {error || emptyFields.includes('minSalary') ? 'error' : ''}
+        >
+        </input>
+
+        <label> Max Salary($): </label>
+        <input
+            type = "number"
+            onChange= {(e) => setMaxSalary(e.target.value)}
+            value={maxSalary}
+            className = {error || emptyFields.includes('maxSalary') ? 'error' : ''}
+        >
+        </input>
+
+        <label> Type: </label>
+        <input
+            type = "text"
+            onChange= {(e) => setType(e.target.value)}
+            value={type}
+            className = {error || emptyFields.includes('type') ? 'error' : ''}
         >
         </input>
 

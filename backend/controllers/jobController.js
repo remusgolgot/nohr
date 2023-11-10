@@ -2,22 +2,40 @@ const Job = require('../models/job')
 const mongoose = require('mongoose')
 
 const createJob = async (req, res) => {
-    const {title, salary} = req.body
+    const {title, company, minSalary, maxSalary, type} = req.body
 
     let emptyFields = []
     if (!title) {
         emptyFields.push('title')
     }
-    if (!salary) {
-        emptyFields.push('salary')
+    if (!minSalary) {
+        emptyFields.push('minSalary')
+    }
+    if (!maxSalary) {
+        emptyFields.push('maxSalary')
+    }
+    if (!type) {
+        emptyFields.push('type')
     }
     if (emptyFields.length > 0) {
         return res.status(400).json({error : 'Please fill in all the fields', emptyFields})
     }
+
+    if (parseInt(minSalary) >= parseInt(maxSalary)) {
+        return res.status(400).json({error : 'Min Salary must be lower than Max Salary'})
+    }
+
+    if (minSalary < 0) {
+        return res.status(400).json({error : 'Min Salary must be greater than 0'})
+    }
+
+    if (type !== 'REMOTE' && type !== 'ONSITE' && type !== 'HYBRID') {
+        return res.status(400).json({error : 'Invalid value for type'})
+    }
     
     try {
       const user_id = req.user._id
-      const job = await Job.create( {title, salary, user_id})
+      const job = await Job.create( {title, company: "META", minSalary, maxSalary, type, user_id})
       res.status(200).json(job)
     } catch(error) {
       res.status(400).json({error : error.message})

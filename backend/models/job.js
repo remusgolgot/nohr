@@ -8,8 +8,21 @@ const jobSchema = new Schema({
         type: String,
         required: true
     },
-    salary: {
+    company: {
+        type: String,
+        required: true
+    },
+    minSalary: {
         type: Number,
+        required: true
+    },
+    maxSalary: {
+        type: Number,
+        required: true
+    },
+    type: {
+        type: String,
+        enum : ['REMOTE','HYBRID', 'ONSITE'],
         required: true
     },
     user_id: {
