@@ -2,6 +2,7 @@ import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 import { useAuthContext } from './hooks/useAuthContext'
 
 import Home from './pages/Home'
+import Admin from './pages/Admin'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Navbar from './components/Navbar'
@@ -9,6 +10,7 @@ import Navbar from './components/Navbar'
 function App() {
 
   const {user} = useAuthContext()
+  console.log(user)
 
   return (
     <div className="App">
@@ -18,7 +20,7 @@ function App() {
       <Routes>
         <Route 
           path="/"
-          element={user? <Home/> : <Navigate to = "/login"></Navigate>}
+          element={user && user.role === 'admin' ? <Admin/> : user? <Home/> :<Navigate to = "/"></Navigate>}
         />
         <Route 
           path="/login"

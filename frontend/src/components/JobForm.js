@@ -49,7 +49,7 @@ const JobForm = () => {
     }
 
     return (
-       <form className="create" onSubmit= {handleSubmit}>
+       <form id="jobForm" className="create" onSubmit= {handleSubmit}>
         <h3>
             Add a New Job
         </h3>
@@ -80,14 +80,39 @@ const JobForm = () => {
         >
         </input>
 
-        <label> Type: </label>
-        <input
+        <label for="types">JobType:</label>
+        <select 
+            name="types" id="types" form="jobForm"
+            onChange={(e) => setType(e.target.value)}
+        >
+            <option disabled selected value> -- select an option -- </option>
+            <option value="HYBRID">Hybrid</option>
+            <option value="REMOTE">Remote</option>
+            <option value="ONSITE">Onsite</option>
+        </select>
+        <br/>
+        <br/>
+
+        {/* <label> Type: </label> */}
+        {/* <div>
+            <Select 
+                options={options} 
+                onChange= {(e) => setType(e.target.value)}
+                value={type}>
+            </Select>
+        </div> */}
+        {/* <select name="jobType">
+        <option value="REMOTE">Remote</option>
+        <option value="HYBRID">Hybrid</option>
+        <option value="ONSITE">Onsite</option>
+      </select> */}
+        {/* <input
             type = "text"
             onChange= {(e) => setType(e.target.value)}
             value={type}
             className = {error || emptyFields.includes('type') ? 'error' : ''}
         >
-        </input>
+        </input> */}
 
         <button> Add job</button>  
         {error && <div className = "error">{error}</div>}
