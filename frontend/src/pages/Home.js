@@ -1,42 +1,56 @@
-import { useEffect } from 'react'
-import JobDetails from '../components/JobDetails'
-import JobForm from '../components/JobForm'
-import {useJobContext} from '../hooks/useJobContext'
-import {useAuthContext} from '../hooks/useAuthContext'
+import { Box, Container, Typography } from "@mui/material";
+import bgImage from "../assets/main/pic.png";
 
 const Home = () => {
 
-    const {jobs, dispatch} = useJobContext()
-    const {user} = useAuthContext()
-
-    useEffect( () => {
-        const fetchJobs = async () => {
-        const response = await fetch('/api/jobs', {
-            headers : {
-                'Authorization' : `Bearer ${user.token}`
-            }
-        })
-        const json = await response.json()
-        if (response.ok) {
-            dispatch({type: 'SET_JOBS', payload : json})            
-        }  
-    }
-    if (user) {
-        fetchJobs()
-    } 
-    }, [dispatch, user])
-
     return (
-        <div className = "home">
-           <div className="jobs">
-            {jobs && jobs.map((job) => (
-                <JobDetails job={job} key={job._id}/> 
-            ))}
-            </div>     
-            <JobForm/>   
-        </div>
-    )
-}
+        <Container
+        maxWidth="false"
+        disableGutters
+        sx={{
+          p: {
+            xs: 2,
+            sm: 5,
+            md: 2,
+          },
+          background: `url(${bgImage}) center center/cover`,
+          minHeight: "800px",
+          marginTop: "16.5px",
+          borderRadius: {
+            xs: "0px 0px 27px 27px",
+            md: "0px 0px 54px 54px",
+          },
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+          }}
+        >
+          <Typography
+            sx={{
+              color: "#000",
+              marginTop: "16.5px",
+              textAlign: "center",
+              fontWeight: "600",
+              fontSize: {
+                xs: "38px",
+                md: "48px",
+              },
+              lineHeight: "62px",
+              mb: 4,
+            }}
+          >
+            
+          </Typography>
+          {/* <MainButton text="Discover on 3D Globe" iconImg={btnGlobalIcon} /> */}
+          {/* <SearchNav /> */}
+        </Box>
+      </Container>
+    );
+  };
 
 
 export default Home

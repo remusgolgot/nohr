@@ -152,3 +152,21 @@ select {
   color: #000;
   cursor: pointer;
 }
+
+.MuiDataGrid-cell{
+  color: #F7F8DA;
+  border-left: solid 1px #F7F8DA;
+  
+}
+.MuiDataGrid-columnHeader{
+  color: #83ddbc;
+  font-family: 'Turret Road';
+  background-color: rgb(119, 42, 182);
+}
+
+
+.MuiDataGrid-footerContainer{
+  color: #83ddbc;
+  font-family: 'Turret Road';
+  background-color: rgb(189, 106, 42);
+}

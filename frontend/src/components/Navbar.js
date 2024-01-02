@@ -14,7 +14,7 @@ const Navbar = () => {
         <header>
             <div className="container">
                 <Link to="/">
-                    <h1>NO HR</h1>
+                    <h1>AIR</h1>
                 </Link>
                 <nav>
                     {user && (
