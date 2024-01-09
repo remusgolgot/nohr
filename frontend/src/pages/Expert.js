@@ -1,5 +1,5 @@
-import { Box, Container, Typography } from "@mui/material";
-import bgImage from "../assets/main/expert.png";
+import { Box, Container, Typography, Button } from "@mui/material";
+import bgImage from "../assets/main/freelancer.jpeg";
 
 const Expert = () => {
 
@@ -29,22 +29,8 @@ const Expert = () => {
             flexDirection: "column",
           }}
         >
-          <Typography
-            sx={{
-              color: "#000",
-              marginTop: "16.5px",
-              textAlign: "center",
-              fontWeight: "600",
-              fontSize: {
-                xs: "38px",
-                md: "48px",
-              },
-              lineHeight: "62px",
-              mb: 4,
-            }}
-          >
-            Discover the coolest opportunities
-          </Typography>
+           
+        
           {/* <MainButton text="Discover on 3D Globe" iconImg={btnGlobalIcon} /> */}
           {/* <SearchNav /> */}
         </Box>

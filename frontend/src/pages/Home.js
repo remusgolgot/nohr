@@ -1,5 +1,5 @@
-import { Box, Container, Typography } from "@mui/material";
-import bgImage from "../assets/main/pic.png";
+import { Box, Container, Typography, Button } from "@mui/material";
+import bgImage from "../assets/main/freelancer.jpeg";
 
 const Home = () => {
 
@@ -29,10 +29,11 @@ const Home = () => {
             flexDirection: "column",
           }}
         >
-          <Typography
+           <Button variant="contained" onClick={() => { alert('booyah'); }}>FIND JOBS</Button>
+           <Typography
             sx={{
-              color: "#000",
-              marginTop: "16.5px",
+              color: "red",
+              marginTop: "10px",
               textAlign: "center",
               fontWeight: "600",
               fontSize: {
@@ -43,7 +44,7 @@ const Home = () => {
               mb: 4,
             }}
           >
-            
+            Discover the coolest opportunities jobs
           </Typography>
           {/* <MainButton text="Discover on 3D Globe" iconImg={btnGlobalIcon} /> */}
           {/* <SearchNav /> */}

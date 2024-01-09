@@ -13,7 +13,7 @@ const Company = () => {
             sm: 5,
             md: 2,
           },
-          background: `url(${bgImage}) center center/cover`,
+          background: `white`,
           minHeight: "800px",
           marginTop: "16.5px",
           borderRadius: {
@@ -29,6 +29,7 @@ const Company = () => {
             flexDirection: "column",
           }}
         >
+        
           <Typography
             sx={{
               color: "#000",
@@ -48,6 +49,7 @@ const Company = () => {
           {/* <MainButton text="Discover on 3D Globe" iconImg={btnGlobalIcon} /> */}
           {/* <SearchNav /> */}
         </Box>
+       
       </Container>
     );
   };

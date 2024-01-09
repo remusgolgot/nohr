@@ -6,7 +6,7 @@ Main Epics:
     - below user table
   - actions to delete and disable users
 
-2. Guest Dashboard
+2. Guest Homepage
   - non-login content / landing page
 
 3. Company
